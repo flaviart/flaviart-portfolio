@@ -5,6 +5,7 @@ import Services from './sections/Services'
 import Projects from './sections/Projects'
 import Testimonials from './sections/Testimonials'
 import Contact from './sections/Contact'
+import FloatingContact from './components/FloatingContact'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Testimonials />
       </main>
       <Contact />
+      <FloatingContact />
     </div>
   )
 }

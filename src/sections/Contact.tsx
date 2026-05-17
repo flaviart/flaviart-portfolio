@@ -15,7 +15,10 @@ export default function Contact() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
               Vamos conversar?
             </p>
-            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2
+              className="mb-4 text-[2.8rem] leading-[1] font-normal sm:text-[3.2rem]"
+              style={{ fontFamily: '"Special Gothic Condensed One", sans-serif' }}
+            >
               Tem um projeto em mente?
             </h2>
             <p className="mb-8 max-w-md text-base leading-relaxed text-white/60">
@@ -121,7 +124,10 @@ export default function Contact() {
 
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 sm:flex-row">
-          <span className="text-lg font-bold tracking-tight">FL</span>
+          <span
+            className="text-2xl font-normal tracking-tight"
+            style={{ fontFamily: '"Special Gothic Condensed One", sans-serif' }}
+          >FL</span>
           <p className="text-xs text-white/40">
             &copy; {new Date().getFullYear()} Flávia Letícia. Todos os direitos reservados.
           </p>

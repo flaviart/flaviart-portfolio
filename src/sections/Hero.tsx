@@ -60,7 +60,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative mx-auto flex min-h-[calc(100svh-4rem)] max-w-7xl flex-col justify-center px-6 pt-28 pb-12 lg:pt-24"
+      className="relative mx-auto flex min-h-[calc(100svh-4rem)] max-w-7xl flex-col justify-center px-6 pt-28 pb-4 lg:pt-24"
     >
       {/* Layout grid: texto esquerda + foto direita */}
       <div className="grid w-full grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12">
@@ -132,11 +132,11 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative flex items-center justify-center lg:justify-end"
         >
-          <div className="relative h-[320px] w-[320px] sm:h-[380px] sm:w-[380px] md:h-[420px] md:w-[420px] lg:h-[480px] lg:w-[480px]">
+          <div className="relative h-[384px] w-[384px] sm:h-[456px] sm:w-[456px] md:h-[504px] md:w-[504px] lg:h-[576px] lg:w-[576px]">
             <img
               src="/images/image-hero.png"
               alt="Flávia Letícia"
-              className="h-full w-full object-contain object-top"
+              className="h-full w-full object-contain object-bottom"
               style={{ filter: 'saturate(0.9)' }}
               onError={(e) => {
                 ;(e.target as HTMLImageElement).style.display = 'none'
@@ -144,7 +144,7 @@ export default function Hero() {
             />
             {/* Gradiente branco na base da foto */}
             <div
-              className="pointer-events-none absolute bottom-0 left-0 right-0 h-[25%]"
+              className="pointer-events-none absolute bottom-0 left-0 right-0 h-[12%]"
               style={{
                 background: 'linear-gradient(to bottom, transparent 0%, #ffffff 80%)',
               }}

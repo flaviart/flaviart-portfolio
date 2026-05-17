@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const links = [
-  { label: 'Home', href: '#home' },
-  { label: 'Sobre', href: '#about' },
-  { label: 'Projetos', href: '#projects' },
-  { label: 'Serviços', href: '#services' },
-  { label: 'Contato', href: '#contact' },
+  { label: 'Home', href: '#home', color: '#7A9B3A' },
+  { label: 'Sobre', href: '#about', color: '#B7A7E6' },
+  { label: 'Projetos', href: '#projects', color: '#E6C27A' },
+  { label: 'Serviços', href: '#services', color: '#7C93B6' },
+  { label: 'Contato', href: '#contact', color: '#D98C7C' },
 ]
 
 export default function Navbar() {
@@ -29,9 +29,16 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="transition-colors hover:text-ink"
+              className="group relative inline-flex flex-col items-center py-1 transition-all duration-[350ms] ease-out hover:-translate-y-0.5"
+              style={{ transitionProperty: 'color, transform' }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = link.color }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = '' }}
             >
               {link.label}
+              <span
+                className="mt-1 h-[2px] w-0 rounded-full opacity-80 transition-all duration-[350ms] ease-out group-hover:w-full"
+                style={{ backgroundColor: link.color }}
+              />
             </a>
           ))}
         </nav>

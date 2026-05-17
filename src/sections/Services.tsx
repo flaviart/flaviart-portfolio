@@ -41,7 +41,10 @@ export default function Services() {
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
           Serviços
         </p>
-        <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+        <h2
+            className="text-[2.8rem] leading-[1] font-normal text-ink sm:text-[3.2rem]"
+            style={{ fontFamily: '"Special Gothic Condensed One", sans-serif' }}
+          >
           Como posso te ajudar
         </h2>
       </motion.div>

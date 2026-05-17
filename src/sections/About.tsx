@@ -1,16 +1,11 @@
-import { motion } from 'framer-motion'
+import ScrollReveal from '../components/ScrollReveal'
 import { ArrowUpRight } from 'lucide-react'
 
 export default function About() {
   return (
     <section id="about" className="mx-auto max-w-7xl px-6 pt-12 pb-24">
       <div className="grid items-center gap-12 lg:grid-cols-2">
-        <motion.div
-          initial={{ opacity: 0, x: -24 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-        >
+        <ScrollReveal direction="up" distance={30} duration={0.6}>
           <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-cream">
             <img
               src="/images/workspace.jpg"
@@ -23,14 +18,9 @@ export default function About() {
               }}
             />
           </div>
-        </motion.div>
+        </ScrollReveal>
 
-        <motion.div
-          initial={{ opacity: 0, x: 24 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-        >
+        <ScrollReveal direction="up" distance={30} duration={0.6} delay={0.15}>
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
             Sobre mim
           </p>
@@ -57,7 +47,7 @@ export default function About() {
             Vamos conversar
             <ArrowUpRight className="h-4 w-4" />
           </a>
-        </motion.div>
+        </ScrollReveal>
       </div>
     </section>
   )

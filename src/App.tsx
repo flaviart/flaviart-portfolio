@@ -6,10 +6,12 @@ import Projects from './sections/Projects'
 import Testimonials from './sections/Testimonials'
 import Contact from './sections/Contact'
 import FloatingContact from './components/FloatingContact'
+import ScrollProgress from './components/ScrollProgress'
 
 function App() {
   return (
     <div className="min-h-screen bg-paper text-ink">
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />

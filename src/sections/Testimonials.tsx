@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import ScrollReveal from '../components/ScrollReveal'
 
 const testimonials = [
   {
@@ -24,56 +24,54 @@ const testimonials = [
 export default function Testimonials() {
   return (
     <section id="testimonials" className="mx-auto max-w-7xl px-6 py-24">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.5 }}
-        className="mb-12 rounded-2xl bg-cream p-8 sm:p-12"
-      >
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-          Depoimentos
-        </p>
-        <h2
-            className="mb-10 text-[2.8rem] leading-[1] font-normal text-ink sm:text-[3.2rem]"
-            style={{ fontFamily: '"Special Gothic Condensed One", sans-serif' }}
-          >
-          O que dizem sobre meu trabalho
-        </h2>
-
-        <div className="grid gap-8 md:grid-cols-3">
-          {testimonials.map((t, index) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+      <ScrollReveal direction="up" distance={30} duration={0.6}>
+        <div className="mb-12 rounded-2xl bg-cream p-8 sm:p-12">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+            Depoimentos
+          </p>
+          <h2
+              className="mb-10 text-[2.8rem] leading-[1] font-normal text-ink sm:text-[3.2rem]"
+              style={{ fontFamily: '"Special Gothic Condensed One", sans-serif' }}
             >
-              <p className="mb-6 text-base leading-relaxed text-muted">
-                “{t.quote}”
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-ink text-[0.65rem] font-semibold uppercase tracking-wide text-white">
-                  {t.name.slice(0, 2)}
+            O que dizem sobre meu trabalho
+          </h2>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            {testimonials.map((t, index) => (
+              <ScrollReveal
+                key={t.name}
+                direction="up"
+                distance={24}
+                duration={0.5}
+                delay={index * 0.1}
+              >
+                <p className="mb-6 text-base leading-relaxed text-muted">
+                  "{t.quote}"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-ink text-[0.65rem] font-semibold uppercase tracking-wide text-white">
+                    {t.name.slice(0, 2)}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-ink">{t.name}</p>
+                    <p className="text-xs text-muted">{t.role}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm font-semibold text-ink">{t.name}</p>
-                  <p className="text-xs text-muted">{t.role}</p>
-                </div>
-              </div>
-            </motion.div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal direction="up" distance={20} duration={0.5}>
+        <div className="flex flex-wrap items-center justify-center gap-8 opacity-40 grayscale">
+          {['Odds Scanner', 'Lilás Digital', 'GOcase', 'Sambafoot', 'Tortelê'].map((name) => (
+            <span key={name} className="text-lg font-bold tracking-wider text-muted">
+              {name}
+            </span>
           ))}
         </div>
-      </motion.div>
-
-      <div className="flex flex-wrap items-center justify-center gap-8 opacity-40 grayscale">
-        {['Odds Scanner', 'Lilás Digital', 'GOcase', 'Sambafoot', 'Tortelê'].map((name) => (
-          <span key={name} className="text-lg font-bold tracking-wider text-muted">
-            {name}
-          </span>
-        ))}
-      </div>
+      </ScrollReveal>
     </section>
   )
 }

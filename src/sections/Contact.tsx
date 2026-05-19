@@ -7,26 +7,36 @@ export default function Contact() {
       <section className="mx-auto max-w-7xl px-6 py-24">
         <div className="grid gap-12 lg:grid-cols-2">
           <ScrollReveal direction="up" distance={30} duration={0.6}>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+            <p
+              className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/50"
+              style={{ fontFamily: '"Raleway", sans-serif' }}
+            >
+              <span className="inline-block h-2 w-2 rounded-full bg-[#D98C7C]" />
               Vamos conversar?
             </p>
             <h2
-              className="mb-4 text-[2.8rem] leading-[1] font-normal sm:text-[3.2rem]"
-              style={{ fontFamily: '"Special Gothic Condensed One", sans-serif' }}
+              className="mb-4 font-bold leading-[1] text-white"
+              style={{
+                fontFamily: '"Playfair Display", serif',
+                fontSize: 'clamp(2rem, 4vw, 3.2rem)',
+              }}
             >
               Tem um projeto em mente?
             </h2>
-            <p className="mb-8 max-w-md text-base leading-relaxed text-white/60">
+            <p
+              className="mb-8 max-w-md text-base leading-relaxed text-white/60"
+              style={{ fontFamily: '"DM Sans", sans-serif' }}
+            >
               Estou disponível para novos projetos e parcerias. Envie uma mensagem e vamos
               transformar sua ideia em realidade.
             </p>
 
             <div className="mb-8 space-y-4">
-              <div className="flex items-center gap-3 text-sm text-white/70">
+              <div className="flex items-center gap-3 text-sm text-white/70" style={{ fontFamily: '"DM Sans", sans-serif' }}>
                 <Mail className="h-4 w-4" />
                 <span>flavialeticia.design@gmail.com</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-white/70">
+              <div className="flex items-center gap-3 text-sm text-white/70" style={{ fontFamily: '"DM Sans", sans-serif' }}>
                 <MapPin className="h-4 w-4" />
                 <span>Fortaleza, Ceará — Brasil</span>
               </div>
@@ -65,7 +75,11 @@ export default function Contact() {
             >
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label htmlFor="nome" className="mb-2 block text-xs font-medium text-white/50">
+                <label
+                  htmlFor="nome"
+                  className="mb-2 block text-xs font-medium uppercase tracking-[0.1em] text-white/50"
+                  style={{ fontFamily: '"Raleway", sans-serif' }}
+                >
                   Nome
                 </label>
                 <input
@@ -76,7 +90,11 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="mb-2 block text-xs font-medium text-white/50">
+                <label
+                  htmlFor="email"
+                  className="mb-2 block text-xs font-medium uppercase tracking-[0.1em] text-white/50"
+                  style={{ fontFamily: '"Raleway", sans-serif' }}
+                >
                   E-mail
                 </label>
                 <input
@@ -88,7 +106,11 @@ export default function Contact() {
               </div>
             </div>
             <div>
-              <label htmlFor="assunto" className="mb-2 block text-xs font-medium text-white/50">
+              <label
+                htmlFor="assunto"
+                className="mb-2 block text-xs font-medium uppercase tracking-[0.1em] text-white/50"
+                style={{ fontFamily: '"Raleway", sans-serif' }}
+              >
                 Assunto
               </label>
               <input
@@ -99,7 +121,11 @@ export default function Contact() {
               />
             </div>
             <div>
-              <label htmlFor="mensagem" className="mb-2 block text-xs font-medium text-white/50">
+              <label
+                htmlFor="mensagem"
+                className="mb-2 block text-xs font-medium uppercase tracking-[0.1em] text-white/50"
+                style={{ fontFamily: '"Raleway", sans-serif' }}
+              >
                 Mensagem
               </label>
               <textarea
@@ -112,6 +138,7 @@ export default function Contact() {
             <button
               type="submit"
               className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-ink transition hover:bg-white/90 sm:w-auto"
+              style={{ fontFamily: '"DM Sans", sans-serif' }}
             >
               Enviar mensagem
               <Send className="h-4 w-4" />
@@ -124,10 +151,10 @@ export default function Contact() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 sm:flex-row">
           <span
-            className="text-2xl font-normal tracking-tight"
-            style={{ fontFamily: '"Special Gothic Condensed One", sans-serif' }}
+            className="text-2xl font-bold tracking-tight text-white"
+            style={{ fontFamily: '"Playfair Display", serif' }}
           >FL</span>
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-white/40" style={{ fontFamily: '"DM Sans", sans-serif' }}>
             &copy; {new Date().getFullYear()} Flávia Letícia. Todos os direitos reservados.
           </p>
         </div>

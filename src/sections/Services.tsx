@@ -1,38 +1,33 @@
 import ScrollReveal from '../components/ScrollReveal'
-import { Palette, Megaphone, PenTool, Layout } from 'lucide-react'
 
 const services = [
   {
-    icon: Palette,
+    icon: '/images/design-icon.png',
     title: 'Design Gráfico',
-    description:
-      'Criação de visuais estratégicos para marcas e produtos: logotipos, sistemas visuais, peças digitais e impressas.',
+    description: 'Materiais impressos e digitais que comunicam com clareza e impacto.',
     color: '#B7A7E6',
-    iconBg: 'bg-[#ede9fe]',
+    iconBg: '#ede9fe',
   },
   {
-    icon: Layout,
+    icon: '/images/art-ditection-icon.png',
     title: 'Direção de Arte',
-    description:
-      'Conceito visual, moodboards e direção criativa para campanhas, eventos e conteúdo digital com identidade forte.',
+    description: 'Conceitos visuais que guiam projetos e fortalecem a identidade da sua marca.',
     color: '#FFBC65',
-    iconBg: 'bg-[#fff6e8]',
+    iconBg: '#fff6e8',
   },
   {
-    icon: PenTool,
+    icon: '/images/ilustration-icon.png',
     title: 'Ilustração',
-    description:
-      'Ilustrações digitais, pixel art e artes personalizadas para editoriais, games, produtos e identidades visuais.',
+    description: 'Ilustrações autorais que dão vida a ideias e comunicam de forma única.',
     color: '#7A9B3A',
-    iconBg: 'bg-[#edf3e0]',
+    iconBg: '#edf3e0',
   },
   {
-    icon: Megaphone,
+    icon: '/images/publicidade-icon.png',
     title: 'Publicidade',
-    description:
-      'Campanhas publicitárias, display ads, motion banners e peças de conversão para digital e mídia social.',
+    description: 'Campanhas e peças que engajam, informam e convertem no digital.',
     color: '#D98C7C',
-    iconBg: 'bg-[#fbede9]',
+    iconBg: '#fbede9',
   },
 ]
 
@@ -40,18 +35,25 @@ export default function Services() {
   return (
     <section id="services" className="mx-auto max-w-7xl px-6 py-24">
       <ScrollReveal direction="up" distance={30} duration={0.6} className="mb-16">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+        <p
+          className="mb-5 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted"
+          style={{ fontFamily: '"Raleway", sans-serif' }}
+        >
+          <span className="inline-block h-2 w-2 rounded-full bg-[#8B7BC8]" />
           Serviços
         </p>
         <h2
-            className="text-[2.8rem] leading-[1] font-normal text-ink sm:text-[3.2rem]"
-            style={{ fontFamily: '"Special Gothic Condensed One", sans-serif' }}
-          >
+          className="mb-5 font-bold leading-[1.1] text-[#111111]"
+          style={{
+            fontFamily: '"Playfair Display", serif',
+            fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
+          }}
+        >
           Como posso te ajudar
         </h2>
       </ScrollReveal>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((service, index) => (
           <ScrollReveal
             key={service.title}
@@ -59,18 +61,39 @@ export default function Services() {
             distance={30}
             duration={0.5}
             delay={index * 0.1}
+            className="h-full"
           >
-            <article className="group relative overflow-hidden rounded-2xl border border-line bg-white p-6 transition hover:-translate-y-1 hover:border-neutral-300 hover:shadow-sm">
-              {/* Linha colorida no topo */}
+            <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-[#FBF7EF] p-7 transition hover:-translate-y-1 hover:shadow-md">
+              {/* Colored top border */}
               <div
-                className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl"
+                className="absolute top-0 left-0 right-0 h-[4px] rounded-t-2xl"
                 style={{ backgroundColor: service.color }}
               />
-              <div className={`mb-5 mt-2 inline-flex h-10 w-10 items-center justify-center rounded-lg ${service.iconBg}`}>
-                <service.icon className="h-5 w-5" style={{ color: service.color }} />
+
+              {/* Icon circle */}
+              <div
+                className="mb-8 mt-2 flex h-14 w-14 items-center justify-center rounded-full"
+                style={{ backgroundColor: service.iconBg }}
+              >
+                <img src={service.icon} alt={service.title} className="h-14 w-14 object-contain" />
               </div>
-              <h3 className="mb-3 text-lg font-semibold text-ink">{service.title}</h3>
-              <p className="text-sm leading-relaxed text-muted">{service.description}</p>
+
+              {/* Title */}
+              <h3
+                className="mb-3 font-bold text-[#111111]"
+                style={{ fontFamily: '"Playfair Display", serif', fontSize: '20px' }}
+              >
+                {service.title}
+              </h3>
+
+              {/* Description */}
+              <p
+                className="flex-1 leading-relaxed text-muted"
+                style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '15px' }}
+              >
+                {service.description}
+              </p>
+
             </article>
           </ScrollReveal>
         ))}

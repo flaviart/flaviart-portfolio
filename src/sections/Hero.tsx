@@ -15,7 +15,7 @@ const easeOut = [0.25, 0.46, 0.45, 0.94] as const
 const phrases = [
   { text: 'crio experiências visuais', color: '#7A9B3A' },
   { text: 'crio identidades marcantes', color: '#B7A7E6' },
-  { text: 'crio campanhas criativas', color: '#FFBC65' },
+  { text: 'crio campanhas e narrativas visuais', color: '#FFBC65' },
   { text: 'crio ilustrações autorais', color: '#7C93B6' },
   { text: 'crio motion designs', color: '#D98C7C' },
 ]
@@ -24,9 +24,7 @@ function AnimatedPhrase() {
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % phrases.length)
-    }, 3000)
+    const timer = setInterval(() => setIndex((p) => (p + 1) % phrases.length), 3000)
     return () => clearInterval(timer)
   }, [])
 
@@ -67,70 +65,27 @@ function AnimatedPhrase() {
   )
 }
 
-/* ---------- word reveal ---------- */
-function SplitReveal({
-  text,
-  className = '',
-  delay = 0,
-}: {
-  text: string
-  className?: string
-  delay?: number
-}) {
-  const words = text.split(' ')
-  return (
-    <span className={`inline-flex flex-wrap ${className}`}>
-      {words.map((word, i) => (
-        <span key={i} className="mr-[0.22em] overflow-hidden">
-          <motion.span
-            className="inline-block"
-            initial={{ y: '110%' }}
-            animate={{ y: 0 }}
-            transition={{
-              duration: 0.7,
-              delay: delay + i * 0.09,
-              ease: easeOut,
-            }}
-          >
-            {word}
-          </motion.span>
-        </span>
-      ))}
-    </span>
-  )
-}
-
 /* ---------- magnetic button ---------- */
 function MagneticButton() {
   const ref = useRef<HTMLAnchorElement>(null)
   const x = useMotionValue(0)
   const y = useMotionValue(0)
-
   const springX = useSpring(x, { stiffness: 150, damping: 15 })
   const springY = useSpring(y, { stiffness: 150, damping: 15 })
-
-  const handleMove = (e: React.MouseEvent) => {
-    if (!ref.current) return
-    const rect = ref.current.getBoundingClientRect()
-    const cx = rect.left + rect.width / 2
-    const cy = rect.top + rect.height / 2
-    x.set((e.clientX - cx) * 0.2)
-    y.set((e.clientY - cy) * 0.2)
-  }
-
-  const handleLeave = () => {
-    x.set(0)
-    y.set(0)
-  }
 
   return (
     <motion.a
       ref={ref}
       href="#projects"
-      className="group relative inline-flex items-center gap-2.5 rounded-full border border-ink bg-transparent px-8 py-3.5 text-sm font-semibold text-ink transition-colors duration-300 hover:bg-ink hover:text-white"
-      style={{ x: springX, y: springY }}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
+      className="group inline-flex items-center gap-2.5 rounded-full border-2 border-[#111111] bg-transparent px-8 py-3.5 text-sm font-semibold text-[#111111] transition-colors duration-300 hover:bg-[#111111] hover:text-white"
+      style={{ x: springX, y: springY, fontFamily: '"DM Sans", sans-serif' }}
+      onMouseMove={(e) => {
+        if (!ref.current) return
+        const rect = ref.current.getBoundingClientRect()
+        x.set((e.clientX - (rect.left + rect.width / 2)) * 0.2)
+        y.set((e.clientY - (rect.top + rect.height / 2)) * 0.2)
+      }}
+      onMouseLeave={() => { x.set(0); y.set(0) }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.7, ease: easeOut }}
@@ -138,18 +93,6 @@ function MagneticButton() {
       Ver projetos
       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
     </motion.a>
-  )
-}
-
-/* ---------- grain overlay ---------- */
-function GrainOverlay() {
-  return (
-    <div
-      className="pointer-events-none absolute inset-0 z-10 opacity-[0.025]"
-      style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-      }}
-    />
   )
 }
 
@@ -172,9 +115,8 @@ export default function Hero() {
       id="home"
       className="relative mx-auto flex min-h-[calc(100svh-4rem)] max-w-7xl flex-col justify-center overflow-hidden px-6 pt-28 pb-4 lg:pt-24"
     >
-      <GrainOverlay />
+      <div className="grid w-full grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-8 lg:gap-14">
 
-      <div className="grid w-full grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14">
         {/* Left — Text */}
         <motion.div
           style={{ y: textY }}
@@ -185,36 +127,56 @@ export default function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: easeOut }}
-            className="mb-6 flex items-center gap-3 text-sm font-medium tracking-wide text-muted uppercase"
+            className="mb-6 flex items-center gap-3 font-semibold"
+            style={{ color: '#E0704A', fontFamily: '"Raleway", sans-serif', fontSize: '16px' }}
           >
-            <span>me chamo Flávia Leticia</span>
-            <span className="h-px w-8 bg-neutral-300" />
-            <span>Ceará, Brazil</span>
+            <span>Olá, eu sou a Flávia</span>
+            <span className="h-px w-8 bg-current opacity-40" />
+            <span>Ceará, Brasil</span>
           </motion.p>
 
-          {/* Titles */}
+          {/* Visual Designer */}
           <h1
-            className="mb-1 text-[4rem] leading-[0.88] font-normal text-ink sm:text-[5.6rem] md:text-[6.2rem]"
-            style={{ fontFamily: '"Special Gothic Condensed One", sans-serif' }}
-          >
-            <SplitReveal text="Visual Designer" delay={0.15} />
-          </h1>
-
-          <h2
-            className="mb-8 text-[3.8rem] leading-[0.88] font-normal text-transparent sm:text-[5.4rem] md:text-[6rem]"
+            className="mb-0 font-bold leading-[0.92] text-[#111111]"
             style={{
-              WebkitTextStroke: '1.5px #111111',
-              fontFamily: '"Special Gothic Condensed One", sans-serif',
+              fontFamily: '"Playfair Display", serif',
+              fontSize: 'clamp(2.2rem, 4.8vw, 4.4rem)',
             }}
           >
-            <SplitReveal text="& Ilustradora" delay={0.35} />
+            <motion.span
+              className="block"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.15, ease: easeOut }}
+            >
+              Visual Designer
+            </motion.span>
+          </h1>
+
+          {/* & Ilustradora */}
+          <h2
+            className="mb-5 font-bold italic leading-[0.96]"
+            style={{
+              fontFamily: '"Playfair Display", serif',
+              fontSize: 'clamp(2.2rem, 4.8vw, 4.4rem)',
+              color: '#8B7BC8',
+            }}
+          >
+            <motion.span
+              className="block"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3, ease: easeOut }}
+            >
+              & Ilustradora
+            </motion.span>
           </h2>
 
           {/* Animated phrase */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.55, ease: easeOut }}
+            transition={{ duration: 0.6, delay: 0.5, ease: easeOut }}
           >
             <AnimatedPhrase />
           </motion.div>
@@ -224,19 +186,19 @@ export default function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6, ease: easeOut }}
-            className="mb-8 max-w-md text-sm leading-relaxed text-muted"
+            className="mb-8 max-w-[22rem] leading-relaxed text-muted"
+            style={{ fontSize: '16px', fontFamily: '"DM Sans", sans-serif' }}
           >
             Transformo ideias em visuais que conectam, comunicam e convertem.
-            Branding, identidade visual, digital e muito mais.
           </motion.p>
 
           {/* CTA */}
           <MagneticButton />
         </motion.div>
 
-        {/* Right — Image */}
+        {/* Right — Image with decorative elements */}
         <motion.div
-          initial={{ opacity: 0, x: 40, scale: 0.95 }}
+          initial={{ opacity: 0, x: 40, scale: 0.97 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.25, ease: easeOut }}
           className="relative flex items-center justify-center lg:justify-end"
@@ -250,26 +212,19 @@ export default function Hero() {
               alt="Flávia Letícia"
               className="h-full w-full object-contain object-bottom transition-transform duration-700 ease-out hover:scale-[1.02]"
               style={{ filter: 'saturate(0.9)' }}
-              onError={(e) => {
-                ;(e.target as HTMLImageElement).style.display = 'none'
-              }}
             />
             <div
               className="pointer-events-none absolute bottom-0 left-0 right-0 h-[12%]"
-              style={{
-                background: 'linear-gradient(to bottom, transparent 0%, #ffffff 80%)',
-              }}
+              style={{ background: 'linear-gradient(to bottom, transparent 0%, #FEFCF7 80%)' }}
             />
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Gradient separator */}
+      {/* Section separator */}
       <div
         className="mt-6 h-[1px] w-full"
-        style={{
-          background: 'linear-gradient(to right, transparent, #d4d4d4, transparent)',
-        }}
+        style={{ background: 'linear-gradient(to right, transparent, #d4c8b8, transparent)' }}
       />
     </section>
   )
